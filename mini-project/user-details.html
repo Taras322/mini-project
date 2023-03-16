@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <title>Document</title>
+</head>
+<body>
+<!--<h1>Users-Details</h1>-->
+<div id="info-users"></div>
+<button id="posts">post of current user</button>
+<div id="user-post"></div>
+<script>
+  const url = new URL(location.href);
+  const json = url.searchParams.get('id');
+  const userId = JSON.parse(json);
+
+  fetch('https://jsonplaceholder.typicode.com/users/' + userId)
+          .then(response => response.json())
+          .then(user => {
+            const id = document.createElement('div');
+            id.innerText = `id: ${user.id}`;
+
+            const name = document.createElement('div');
+            name.innerText = `name: ${user.name}`;
+
+            const userName = document.createElement('div');
+            userName.innerText = `username: ${user.username}`;
+
+            const email = document.createElement('div');
+            email.innerText = `email: ${user.email}`;
+
+            const address = document.createElement('div');
+            address.innerText = `address:`;
+
+            const street = document.createElement('div');
+            street.innerText = `street: ${user.address.street}`;
+
+            const suite = document.createElement('div');
+            suite.innerText = `suite: ${user.address.suite}`;
+
+            const city = document.createElement('div');
+            city.innerText = `city: ${user.address.city}`;
+
+            const zipcode = document.createElement('div');
+            zipcode.innerText = `zipcode: ${user.address.zipcode}`;
+
+            const geo = document.createElement('div');
+            geo.innerText = `geo:`;
+
+            const lat = document.createElement('div');
+            lat.innerText = `lat: ${user.address.geo.lat}`;
+
+            const lng = document.createElement('div');
+            lng.innerText = `lng: ${user.address.geo.lng}`;
+
+            const phone = document.createElement('div');
+            phone.innerText = `phone: ${user.phone}`;
+
+            const website = document.createElement('div');
+            website.innerText = `website: ${user.website}`;
+
+            const company = document.createElement('div');
+            company.innerText = `company:`;
+
+            const companyName = document.createElement('div');
+            companyName.innerText = `name: ${user.company.name}`;
+
+            const catchPhrase = document.createElement('div');
+            catchPhrase.innerText = `catchPhrase: ${user.company.catchPhrase}`;
+
+            const  bs = document.createElement('div');
+            bs.innerText = `bs: ${user.company.bs}`;
+
+            const mainDiv = document.getElementById('info-users');
+            mainDiv.append(id, name, userName, email, address, street, suite, city, zipcode, geo, lat, lng, phone, website, company, companyName, catchPhrase, bs);
+
+          })
+  const getPostsBtn = document.getElementById('posts');
+  getPostsBtn.addEventListener('click', function (){
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
+            .then(response => response.json())
+            .then((posts) => {
+              for (const post of posts) {
+                const userPost = document.getElementById('user-post')
+
+                const a = document.createElement('a');
+                a.innerText = `id: ${post.id}` + `title: ${post.title}`;
+                a.href = 'user-post.html?id=' + post.id;
+
+                userPost.appendChild(a);
+              }
+              getPostsBtn.disabled = true;
+            })
+  })
+</script>
+</body>
+</html>

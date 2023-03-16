@@ -1,0 +1,129 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.html, body{
+    line-height: 1;
+    font-size: 24px;
+    background: #000000;
+    color: #fff;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+button{
+    --c:  #229091;
+    box-shadow: 0 0 0 .1em inset var(--c);
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background:
+            var(--_g) calc(var(--_p,0%) - 100%) 0%,
+            var(--_g) calc(200% - var(--_p,0%)) 0%,
+            var(--_g) calc(var(--_p,0%) - 100%) 100%,
+            var(--_g) calc(200% - var(--_p,0%)) 100%;
+    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+}
+button:hover {
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+}
+button:active {
+    background-color: var(--c);
+    color: #fff;
+}
+button {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    align-items: center;
+    width: 90%;
+    font-size: 3.5rem;
+    cursor: pointer;
+    padding: .1em .6em;
+    font-weight: bold;
+    border: none;
+    color: white;
+}
+
+#item{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+#item > a{
+    width: 400px;
+    height: 200px;
+    border: solid #229091FF;
+    margin: 10px;
+    text-align: center;
+    border-radius: 10px;
+
+    justify-self: center;
+    justify-content: center;
+}
+#user-post{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+
+}
+
+#user-post > a {
+    width: 250px;
+    font-size: 20px;
+    height: 150px;
+}
+
+#info-users{
+    width: 400px;
+    height: 500px;
+}
+
+#post-info{
+    width: 400px;
+    height: 300px;
+
+}
+
+#post-info, #info-users, #user-post > a{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    justify-content: center;
+    padding: 10px;
+    border: solid #229091FF;
+    gap: 2px;
+    border-radius: 4px;
+    margin: 0 auto;
+    box-sizing: content-box;
+}
+
+a, a:active, a:after, a:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+#post-comments{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+#post-comments > div{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    justify-content: center;
+    padding: 10px;
+    border: solid #229091FF;
+    border-radius: 4px;
+    margin: 0 auto;
+    box-sizing: content-box;
+
+}
+h2{
+    text-align: center;
+}
